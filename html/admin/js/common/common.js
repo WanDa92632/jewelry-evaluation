@@ -60,12 +60,12 @@ function getQueryVariable(variable) {
 
 // 判断请求是否成功
 function isSuccess(data) {
-    if (data.status===200){
+    if (data.status === 200) {
         return true;
     }
 }
 
 /*跳转到登录页面*/
 function loginPage() {
-    top.location.href = 'login.html';
+    top.location.href = '/html/admin/view/login.html';
 }

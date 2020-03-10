@@ -1,9 +1,9 @@
 layui.use(["layer", "laypage", 'form'], function () {
-    //用户总数
+    //珠宝总数
     let count;
     //获取用户总数
     $.ajax({
-        url: '/jewelryEvaluation/admin/user/getUserCount',
+        url: '/jewelryEvaluation/admin/jewelry/getJewelryCount',
         type: 'GET',
         async: false,
         contentType: "application/json",
@@ -14,7 +14,7 @@ layui.use(["layer", "laypage", 'form'], function () {
         }
     });
     //初始化分页
-    const laypage = layui.laypage;
+    var laypage = layui.laypage;
     //执行一个laypage实例
     laypage.render({
         elem: "elem", //注意，这里的 test1 是 ID，不用加 # 号
@@ -27,7 +27,7 @@ layui.use(["layer", "laypage", 'form'], function () {
             }
             //获取用户列表
             $.ajax({
-                url: "/jewelryEvaluation/admin/user/getAllUser",
+                url: "/jewelryEvaluation/admin/jewelry/getAllJewelry",
                 type: "POST",
                 data: JSON.stringify(obj.curr),
                 contentType: "application/json",
@@ -38,9 +38,9 @@ layui.use(["layer", "laypage", 'form'], function () {
                         //清空表格内容
                         tbody.empty();
                         //添加内容
-                        const userList = JSON.parse(data.userList);
-                        for (const i in userList) {
-                            const str = joint(userList[i]);
+                        const jewelryList = JSON.parse(data.jewelryList);
+                        for (const i in jewelryList) {
+                            const str = joint(jewelryList[i]);
                             tbody.append(str);
                         }
                         //渲染选中框
@@ -62,47 +62,25 @@ layui.use(["layer", "laypage", 'form'], function () {
 
 
 //拼接表格内容
-function joint(user) {
+function joint(jewelry) {
     let str;
     str = '\
   <tr>\
     <td>\
-      <input type="checkbox" name="id" value="' + user.userId + '" lay-skin="primary">\
+      <input type="checkbox" name="id" value="' + jewelry.jewelryId + '" lay-skin="primary">\
     </td>\
-    <td>' + user.userId + '</td>\
-    <td>' + user.username + '</td>\
-    <td>' + user.email + '</td>\
-    <td>' + user.phoneNumber + '</td>\
-    <td>' + user.lastVisitTime + '</td>\
-    <td>' + user.creatTime + '</td>\
+    <td>' + jewelry.jewelryId + '</td>\
+    <td>' + jewelry.jewelryCode + '</td>\
+    <td>' + jewelry.jewelryName + '</td>\
+    <td>' + jewelry.jewelryIntroduction + '</td>\
     <td class="td-status">\
     ';
-    if (user.status === 0) {
-        str = str + '\
-      <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>\
-      </td>\
-      <td class="td-manage">\
-        <a onclick="member_stop(this,' + user.userId + ')" href="javascript:;" title="停用">\
-        <i class="layui-icon">&#xe601;</i>\
-      ';
-    } else {
-        str = str + '\
-      <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>\
-      </td>\
-      <td class="td-manage">\
-        <a onclick="member_stop(this,' + user.userId + ')" href="javascript:;" title="启用">\
-        <i class="layui-icon">&#xe62f;</i>\
-      ';
-    }
     str = str + '\
       </a>\
-      <a title="编辑" onclick="xadmin.open(\'编辑\',\'member-edit.html?userId=' + user.userId + '\',600,330)" href="javascript:;">\
+      <a title="编辑" onclick="xadmin.open(\'编辑\',\'jewelry-edit.html?jewelryId=' + jewelry.jewelryId + '\',600,330)" href="javascript:;">\
         <i class="layui-icon">&#xe642;</i>\
       </a>\
-      <a onclick="xadmin.open(\'修改密码\',\'member-password.html?userId=' + user.userId + '\',600,225)" title="修改密码" href="javascript:;">\
-        <i class="layui-icon">&#xe631;</i>\
-      </a>\
-      <a title="删除" onclick="member_del(this,' + user.userId + ')" href="javascript:;">\
+      <a title="删除" onclick="member_del(this,' + jewelry.jewelryId + ')" href="javascript:;">\
         <i class="layui-icon">&#xe640;</i>\
       </a>\
     </td>\
