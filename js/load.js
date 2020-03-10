@@ -1,11 +1,11 @@
 // function loadIndex() {
 // // 加载珠宝饰品选择框
 //     $.ajax({
-//         url: "/jewelry-evaluation/api/jewelry_data",
+//         url: "/jewelryEvaluation/api/jewelry_data",
 //         type: "GET",
 //         contentType: "application/json",
 //         success: function (result) {
-//             if (result.success) {
+//             if (isSuccess(result)) {
 //                 // 取出珠宝列表信息
 //                 jewelryList = result.jewelryList;
 //                 for (var i in jewelryList) {
