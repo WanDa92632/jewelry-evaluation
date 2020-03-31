@@ -3,7 +3,7 @@ layui.use(["layer", "laypage", 'form'], function () {
     let count;
     //获取用户总数
     $.ajax({
-        url: '/jewelryEvaluation/admin/parameter/getParameterCount',
+        url: '/jewelryEvaluation/admin/userRole/getUserRoleCount',
         type: 'GET',
         async: false,
         contentType: "application/json",
@@ -27,7 +27,7 @@ layui.use(["layer", "laypage", 'form'], function () {
             }
             //获取用户列表
             $.ajax({
-                url: "/jewelryEvaluation/admin/parameter/getAllParameter",
+                url: "/jewelryEvaluation/admin/userRole/getAllUserRole",
                 type: "POST",
                 data: JSON.stringify(obj.curr),
                 contentType: "application/json",
@@ -38,9 +38,9 @@ layui.use(["layer", "laypage", 'form'], function () {
                         //清空表格内容
                         tbody.empty();
                         //添加内容
-                        const parameterList = JSON.parse(data.parameterList);
-                        for (const i in parameterList) {
-                            const str = joint(parameterList[i]);
+                        const userRoleList = JSON.parse(data.userRoleList);
+                        for (const i in userRoleList) {
+                            const str = joint(userRoleList[i]);
                             tbody.append(str);
                         }
                         //渲染选中框
@@ -62,26 +62,26 @@ layui.use(["layer", "laypage", 'form'], function () {
 
 
 //拼接表格内容
-function joint(parameter) {
+function joint(userRole) {
     let str;
     str = '\
   <tr>\
     <td>\
-      <input type="checkbox" name="id" value="' + parameter.parameterId + '" lay-skin="primary">\
+      <input type="checkbox" name="id" value="' + userRole.id + '" lay-skin="primary">\
     </td>\
-    <td>' + parameter.parameterId + '</td>\
-    <td>' + parameter.jewelryId + '</td>\
-    <td>' + parameter.parameterIndex + '</td>\
-    <td>' + parameter.parameterCode + '</td>\
-    <td>' + parameter.parameterName + '</td>\
+    <td>' + userRole.id + '</td>\
+    <td>' + userRole.user.userId + '</td>\
+    <td>' + userRole.user.username + '</td>\
+    <td>' + userRole.role.roleId + '</td>\
+    <td>' + userRole.role.roleName + '</td>\
     <td class="td-status">\
     ';
     str = str + '\
       </a>\
-      <a title="编辑" onclick="xadmin.open(\'编辑\',\'jewelry-permission-edit.html?parameterId=' + parameter.parameterId + '\',600,330)" href="javascript:;">\
+      <a title="编辑" onclick="xadmin.open(\'编辑\',\'userRole-edit.html?id=' + userRole.id + '\',600,330)" href="javascript:;">\
         <i class="layui-icon">&#xe642;</i>\
       </a>\
-      <a title="删除" onclick="member_del(this,' + parameter.parameterId + ')" href="javascript:;">\
+      <a title="删除" onclick="member_del(this,' + userRole.id + ')" href="javascript:;">\
         <i class="layui-icon">&#xe640;</i>\
       </a>\
     </td>\

@@ -77,7 +77,7 @@ function joint(jewelry) {
     ';
     str = str + '\
       </a>\
-      <a title="编辑" onclick="xadmin.open(\'编辑\',\'jewelry-edit.html?jewelryId=' + jewelry.jewelryId + '\',600,330)" href="javascript:;">\
+      <a title="编辑" onclick="xadmin.open(\'编辑\',\'permission-edit.html?jewelryId=' + jewelry.jewelryId + '\',600,330)" href="javascript:;">\
         <i class="layui-icon">&#xe642;</i>\
       </a>\
       <a title="删除" onclick="member_del(this,' + jewelry.jewelryId + ')" href="javascript:;">\

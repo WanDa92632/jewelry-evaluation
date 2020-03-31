@@ -15,59 +15,137 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
 </head>
 <body>
-<div class="layui-container">
-    <div class="layui-row">
-        <div class="layui-col-xs12">
-            <div class="layui-carousel carousel" id="test1">
-                <div carousel-item>
-                    <div><img src="../image/1.jpg" style="width: 100%;height: 100%" rel="图片1"></div>
-                    <div><img src="../image/1.jpg" style="width: 100%;height: 100%" rel="图片1"></div>
-                    <div><img src="../image/1.jpg" style="width: 100%;height: 100%" rel="图片1"></div>
-                    <div><img src="../image/1.jpg" style="width: 100%;height: 100%" rel="图片1"></div>
+    <div class="layui-tab layui-tab-brief" style="margin: 0!important;">
+        <div class="layui-row layui-tab-content" style="padding: 0 10px">
+            <div class="layui-tab-item layui-show">
+                <!--轮播图-->
+                <div class="layui-row">
+                    <div class="layui-carousel carousel" id="carousel">
+                        <div carousel-item>
+                            <div><img src="../image/1.jpg" style="width: 100%;height: 100%" rel="图片1"></div>
+                            <div><img src="../image/1.jpg" style="width: 100%;height: 100%" rel="图片1"></div>
+                            <div><img src="../image/1.jpg" style="width: 100%;height: 100%" rel="图片1"></div>
+                            <div><img src="../image/1.jpg" style="width: 100%;height: 100%" rel="图片1"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--珠宝-->
+                <div class="layui-row">
+                    <!--表单-->
+                    <h2 lay-filter="demo">请选择珠宝种类</h2>
+                    <form class="layui-form form" action="" lay-filter="form">
+                        <!--珠宝种类-->
+                        <div class="layui-form-item" id="index">
+                            <select name="type" id="type" lay-verify='required' lay-filter="type">
+                                <option value="">请选择珠宝种类</option>
+                            </select>
+                            <!--珠宝饰品种类介绍-->
+                            <div class="introduction" id="type_info" style="display: none">
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px">
+                            <!--详细信息-->
+                            <div class="layui-form-item">
+                                <h3>详细参数</h3>
+                            </div>
+
+                            <div id="parameter" style="display: none">
+
+                            </div>
+                        </div>
+                        <!--已选择标签-->
+                        <div class="layui-form-item">
+                            <div class="layui-btn-group" id="chosen">
+
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button type="reset" class="layui-btn layui-btn-primary layui-col-xs3">重置</button>
+                            <button class="layui-btn layui-col-xs8" id="formSubmit" lay-submit lay-filter="formSubmit"
+                                    style="float: right">
+                                微信付费并查看价格评估结果
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="layui-tab-item"></div>
+            <div class="layui-tab-item"></div>
+            <div class="layui-tab-item ">
+                <div class="layui-row">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col width="70">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <img src="../image/1.jpg" style="height: 50px;width: 50px;border-radius:50%" alt="用户头像">
+                            </td>
+                            <td>username</td>
+                        </tr>
+                        <tr>
+                            <td><i class="layui-icon layui-icon-username"></i> 用户名</td>
+                            <td>知非</td>
+                        </tr>
+                        <tr>
+                            <td><i class="layui-icon layui-icon-cellphone"></i> 号码</td>
+                            <td>15377607457</td>
+                        </tr>
+                        <tr>
+                            <td><i class="layui-icon layui-icon-email"></i> 邮箱</td>
+                            <td>wanda92632@163.com</td>
+                        </tr>
+                        <tr>
+                            <td><i class="layui-icon layui-icon-auz"></i> 用户组</td>
+                            <td>普通用户</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
-        <div class="layui-col-xs12">
-            <!--表单-->
-            <h2 lay-filter="demo">请选择珠宝种类</h2>
-            <form class="layui-form form" action="" lay-filter="form">
-                <!--珠宝种类-->
-                <div class="layui-form-item" id="index">
-                    <select name="type" id="type" lay-verify='required' lay-filter="type">
-                        <option value="">请选择珠宝种类</option>
-                    </select>
-                    <!--珠宝饰品种类介绍-->
-                    <div class="introduction" id="type_info" style="display: none">
-                    </div>
-                </div>
-
-                <div style="margin-top: 30px">
-                    <!--详细信息-->
-                    <div class="layui-form-item">
-                        <h3>详细参数</h3>
-                    </div>
-
-                    <div id="parameter" style="display: none">
-
-                    </div>
-                </div>
-                <!--已选择标签-->
-                <div class="layui-form-item">
-                    <div class="layui-btn-group" id="chosen">
-
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <button type="reset" class="layui-btn layui-btn-primary layui-col-xs3">重置</button>
-                    <button class="layui-btn layui-col-xs8" id="formSubmit" lay-submit lay-filter="formSubmit" style="float: right">
-                        微信付费并查看价格评估结果
-                    </button>
-                </div>
-            </form>
-        </div>
+        <!--底部导航栏-->
+        <ul class="layui-tab-title nav">
+            <li class="layui-col-xs3 layui-this" style="line-height: 18px">
+                <i class="layui-icon layui-icon-home"></i><br/>首页
+            </li>
+            <li class="layui-col-xs3" style="line-height: 18px">
+                <i class="layui-icon layui-icon-home"></i><br/>用户管理
+            </li>
+            <li class="layui-col-xs3" style="line-height: 18px">
+                <i class="layui-icon layui-icon-user"></i><br/>订单管理
+            </li>
+            <li class="layui-col-xs3" style="line-height: 18px">
+                <i class="layui-icon layui-icon-user"></i><br/>用户管理
+            </li>
+        </ul>
     </div>
-</div>
+
+<!--<nav class="nav">-->
+<!--    &lt;!&ndash;底部导航栏&ndash;&gt;-->
+<!--    <div class="layui-row">-->
+<!--        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" STYLE="margin-bottom: 0">-->
+<!--            <ul class="layui-tab-title">-->
+<!--                <li class="layui-col-xs3 layui-this" style="line-height: 18px">-->
+<!--                    <i class="layui-icon layui-icon-home"></i><br/>首页-->
+<!--                </li>-->
+<!--                <li class="layui-col-xs3" style="line-height: 18px">-->
+<!--                    <i class="layui-icon layui-icon-home"></i><br/>用户管理-->
+<!--                </li>-->
+<!--                <li class="layui-col-xs3" style="line-height: 18px">-->
+<!--                    <i class="layui-icon layui-icon-user"></i><br/>用户管理-->
+<!--                </li>-->
+<!--                <li class="layui-col-xs3" style="line-height: 18px">-->
+<!--                    <i class="layui-icon layui-icon-user"></i><br/>用户管理-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 
 <!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
 <script src="../layui/layui.all.js"></script>

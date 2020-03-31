@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-红衣</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/xadmin.css">
+    <script type="text/javascript" src="../../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../js/xadmin.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../js/common/common.js" charset="utf-8"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]--></head>
+
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form layui-col-xs-offset2">
+            <div class="layui-form-item">
+                <label for="role" class="layui-form-label">
+                    <span class="x-red">*</span>角色</label>
+                <div class="layui-input-inline">
+                    <select id="role" name="roleId" lay-verify="required">
+                        <option value=""></option>
+<!--                        <option value="0">普通管理员</option>-->
+<!--                        <option value="1">超级管理员</option>-->
+<!--                        <option value="2">普通用户</option>-->
+<!--                        <option value="3">深圳</option>-->
+<!--                        <option value="4">杭州</option>-->
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn layui-col-xs-offset6" lay-filter="modify" lay-submit="modify">修改</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'layer'],
+        function () {
+            const $ = layui.jquery,
+                form = layui.form,
+                layer = layui.layer;
+
+            $.ajax({
+                url: '/jewelryEvaluation/admin/role/getList',
+                type: 'get',
+                contentType: 'application/json',
+                success: function (result) {
+                    if (isSuccess(result)){
+                        let roleList = result.data.roleList;
+                        let str;
+                        for (const i in roleList){
+                            if(roleList.hasOwnProperty(i)){
+                                str= str+'<option value="'+roleList[i].roleId+'">'+roleList[i].roleName+'</option>'
+                            }
+                        }
+                        $('#role').append(str);
+                        form.render('select');
+                    }
+                }
+            });
+
+
+            //监听提交
+            form.on('submit(modify)',
+                function (data) {
+                    //添加 id
+                    data.field.id = getQueryVariable('id');
+                    const info = data.field;
+                    //清除未填写数据
+                    for (const i in info) {
+                        if (info.hasOwnProperty(i) && info[i] === '') {
+                            delete info[i];
+                        }
+                    }
+                    console.log(info);
+                    //异步提交修改请求
+                    $.ajax({
+                        url: '/jewelryEvaluation/admin/userRole/updateUserRoleData',
+                        type: "POST",
+                        data: JSON.stringify(info),
+                        contentType: "application/json",
+                        success: function (result) {
+                            if (isSuccess()){
+                                layer.msg("修改成功");
+                            }else {
+                                layer.msg(result.msg);
+                            }
+                        },
+                        error:function () {
+                            layer.msg("服务器错误");
+                        }
+                    });
+                    // TODO  页面刷新
+                    layer.alert("修改成功", {
+                            icon: 6
+                        },
+                        function () {
+                            // 获得frame索引
+                            const index = parent.layer.getFrameIndex(window.name);
+                            //关闭当前frame
+                            parent.layer.close(index);
+                        });
+                    return false;
+                });
+        });
+</script>
+</body>
+
+</html>

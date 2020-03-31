@@ -14,8 +14,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="../../js/common/common.js"></script>
     <script type="text/javascript" src="../../js/common/load.js"></script>
-    <script type="text/javascript" src="../../js/jewelry/jewelry.js"></script>
-    <script type="text/javascript" src="../../js/user/user.js"></script>
+    <script type="text/javascript" src="../../js/userRole/userRole.js"></script>
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -38,7 +37,7 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    <button class="layui-btn" onclick="xadmin.open('添加用户','jewelry-add.html',600,400)">
+                    <button class="layui-btn" onclick="xadmin.open('添加用户','userRole-add.html',600,400)">
                         <i class="layui-icon"></i>添加
                     </button>
                 </div>
@@ -50,9 +49,10 @@
                                 <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
                             </th>
                             <th>ID</th>
-                            <th>珠宝代码</th>
-                            <th>珠宝名</th>
-                            <th>珠宝介绍</th>
+                            <th>用户ID</th>
+                            <th>用户名</th>
+                            <th>角色ID</th>
+                            <th>角色名</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -106,7 +106,7 @@
     function member_del(obj, id) {
         layer.confirm('确认要删除吗？', function (index) {
             //发异步删除数据
-            $.post('/jewelryEvaluation/admin/jewelry/removeJewelry', JSON.stringify(id));
+            $.post('/jewelryEvaluation/admin/userUserRole/removeUserRole', JSON.stringify(id));
 
             $(obj).parents("tr").remove();
             layer.msg('已删除!', {icon: 1, time: 1000});
@@ -126,7 +126,7 @@
 
         layer.confirm('确认要删除吗？' + ids.toString(), function (index) {
             //捉到所有被选中的，发异步进行删除
-            $.post('/jewelryEvaluation/admin/jewelry/batchRemoveJewelry', JSON.stringify(ids));
+            $.post('/jewelryEvaluation/admin/userUserRole/batchRemoveUserRole', JSON.stringify(ids));
             layer.msg('删除成功', {icon: 1});
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });

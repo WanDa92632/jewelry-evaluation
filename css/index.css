@@ -12,3 +12,23 @@
     color: #777777;
     font-size: 12px;
 }
+.main{
+    padding-bottom: 60px;
+}
+.nav{
+    position: fixed;
+    bottom: 0;
+    background:  #FFF!important;
+    /*position: fixed;*/
+    /*button: 0;*/
+    /*bottom:0px;*/
+    width:100%;
+    height:auto;
+    text-align:center;
+    z-index:1;
+    overflow:hidden;
+}
+table tbody tr td{
+    padding-top: 20px!important;
+    border: none!important;
+}

@@ -37,24 +37,6 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
-                        <div class="layui-inline layui-show-xs-block">
-                            <input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start">
-                        </div>
-                        <div class="layui-inline layui-show-xs-block">
-                            <input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end">
-                        </div>
-                        <div class="layui-inline layui-show-xs-block">
-                            <input type="text" name="username" placeholder="请输入用户名" autocomplete="off"
-                                   class="layui-input">
-                        </div>
-                        <div class="layui-inline layui-show-xs-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
-                                    class="layui-icon">&#xe615;</i></button>
-                        </div>
-                    </form>
-                </div>
                 <div class="layui-card-header">
                     <button class="layui-btn" onclick="xadmin.open('添加用户','jewelry-parameterValue-add.html',600,400)">
                         <i class="layui-icon"></i>添加
@@ -144,7 +126,7 @@
 
         layer.confirm('确认要删除吗？' + ids.toString(), function (index) {
             //捉到所有被选中的，发异步进行删除
-            $.post('/jewelryEvaluation/admin/user/batchRemoveUser', JSON.stringify(ids));
+            $.post('/jewelryEvaluation/admin/parameterValue/batchRemoveParameterValue', JSON.stringify(ids));
             layer.msg('删除成功', {icon: 1});
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
